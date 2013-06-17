@@ -41,7 +41,7 @@
 				<cfloop condition="#item.hasNext()# and item.currentIndex() LTE 3">
 				  <!--- Get the next item; returns a contentBean --->
 				  <cfset thisImage = item.next()>
-				  <cfset twitterMeta &= '<meta name="twitter:image#item.currentIndex()-1#" content="#protocol##cgi.http_host##thisImage.getImageURL()#">'>
+				  <cfset twitterMeta &= '<meta name="twitter:image#item.currentIndex()-1#" content="#protocol##cgi.http_host##thisImage.getImageURL()#" />'>
 				</cfloop>
 			
 			</cfcase>
@@ -72,7 +72,7 @@
 					<cfset twitterMeta &='<meta name="twitter:description" content="Read more on our site" />'>
 				</cfif>
 				<cfif incImage>		
-					<cfset twitterMeta &= '<meta name="twitter:image" content="#protocol##cgi.http_host##$.content().getImageURL()#">'>
+					<cfset twitterMeta &= '<meta name="twitter:image" content="#protocol##cgi.http_host##$.content().getImageURL()#" />'>
 				</cfif>				
 			</cfdefaultcase>
 		</cfswitch>
