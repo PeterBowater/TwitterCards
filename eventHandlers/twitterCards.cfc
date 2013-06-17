@@ -15,9 +15,8 @@
 		<cfset var cardType = "summary">
 		<cfset var incImage = true>
 		<cfset var twitterMeta = "">
-		<cfif cgi.server_port_secure eq 0>
-			<cfset protocol = 'http://'>
-		<cfelse>
+		<cfset var protocol = 'http://'>
+		<cfif cgi.server_port_secure neq 0>
 			<cfset protocol = 'https://'>
 		</cfif>
 		
@@ -39,9 +38,8 @@
 				<cfset theGalleryImages = application.contentManager.getActiveContent($.content().getContentID(), $.event('siteid'))>
 				<cfset item = theGalleryImages.getKidsIterator()>
 				<cfloop condition="#item.hasNext()# and item.currentIndex() LTE 3">
-				  <!--- Get the next item; returns a contentBean --->
-				  <cfset thisImage = item.next()>
-				  <cfset twitterMeta &= '<meta name="twitter:image#item.currentIndex()-1#" content="#protocol##cgi.http_host##thisImage.getImageURL()#" />'>
+				    <cfset thisImage = item.next()>
+				    <cfset twitterMeta &= '<meta name="twitter:image#item.currentIndex()-1#" content="#protocol##cgi.http_host##thisImage.getImageURL()#" />'>
 				</cfloop>
 			
 			</cfcase>
