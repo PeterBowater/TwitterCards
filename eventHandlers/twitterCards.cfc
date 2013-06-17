@@ -27,19 +27,24 @@
 				
 				<cfset twitterMeta = '<meta name="twitter:card" content="#cardType#" />
 <meta name="twitter:site" content="#$.siteConfig().getValue("twitterHandle")#" />
-<meta name="twitter:title" content="#$.content().getValue("title")#" />'>
+<meta name="twitter:title" content="#$.content().getValue("title")#" />
+'>
 				<cfif len(stripHTMLandTruncate($.content().getValue("summary")))>
-					<cfset twitterMeta &='<meta name="twitter:description" content="#stripHTMLAndTruncate($.content().getValue("summary"))#" />'>
+					<cfset twitterMeta &='<meta name="twitter:description" content="#stripHTMLAndTruncate($.content().getValue("summary"))#" />
+'>
 				<cfelseif len(stripHTMLandTruncate($.content().getValue("body")))>
-					<cfset twitterMeta &='<meta name="twitter:description" content="#stripHTMLAndTruncate($.content().getValue("body"))#" />'>
+					<cfset twitterMeta &='<meta name="twitter:description" content="#stripHTMLAndTruncate($.content().getValue("body"))#" />
+'>
 				<cfelse>
-					<cfset twitterMeta &='<meta name="twitter:description" content="Read more on our site" />'>
+					<cfset twitterMeta &='<meta name="twitter:description" content="Read more on our site" />
+'>
 				</cfif>
 				<cfset theGalleryImages = application.contentManager.getActiveContent($.content().getContentID(), $.event('siteid'))>
 				<cfset item = theGalleryImages.getKidsIterator()>
 				<cfloop condition="#item.hasNext()# and item.currentIndex() LTE 3">
 				    <cfset thisImage = item.next()>
-				    <cfset twitterMeta &= '<meta name="twitter:image#item.currentIndex()-1#" content="#protocol##cgi.http_host##thisImage.getImageURL()#" />'>
+				    <cfset twitterMeta &= '<meta name="twitter:image#item.currentIndex()-1#" content="#protocol##cgi.http_host##thisImage.getImageURL()#" />
+'>
 				</cfloop>
 			
 			</cfcase>
@@ -59,18 +64,23 @@
 				</cfif>
 				
 				<cfset twitterMeta = '<meta name="twitter:card" content="#cardType#" />
-		<meta name="twitter:site" content="#$.siteConfig().getValue("twitterHandle")#" />
-		<meta name="twitter:title" content="#$.content().getValue("title")#" />'>
+<meta name="twitter:site" content="#$.siteConfig().getValue("twitterHandle")#" />
+<meta name="twitter:title" content="#$.content().getValue("title")#" />
+'>
 				
 				<cfif len(stripHTMLandTruncate($.content().getValue("summary")))>
-					<cfset twitterMeta &='<meta name="twitter:description" content="#stripHTMLAndTruncate($.content().getValue("summary"))#" />'>
+					<cfset twitterMeta &='<meta name="twitter:description" content="#stripHTMLAndTruncate($.content().getValue("summary"))#" />
+'>
 				<cfelseif len(stripHTMLandTruncate($.content().getValue("body")))>
-					<cfset twitterMeta &='<meta name="twitter:description" content="#stripHTMLAndTruncate($.content().getValue("body"))#" />'>
+					<cfset twitterMeta &='<meta name="twitter:description" content="#stripHTMLAndTruncate($.content().getValue("body"))#" />
+'>
 				<cfelse>
-					<cfset twitterMeta &='<meta name="twitter:description" content="Read more on our site" />'>
+					<cfset twitterMeta &='<meta name="twitter:description" content="Read more on our site" />
+'>
 				</cfif>
 				<cfif incImage>		
-					<cfset twitterMeta &= '<meta name="twitter:image" content="#protocol##cgi.http_host##$.content().getImageURL()#" />'>
+					<cfset twitterMeta &= '<meta name="twitter:image" content="#protocol##cgi.http_host##$.content().getImageURL()#" />
+'>
 				</cfif>				
 			</cfdefaultcase>
 		</cfswitch>
