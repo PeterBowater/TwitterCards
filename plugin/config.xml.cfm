@@ -30,7 +30,19 @@
 					message="" 
 					optionList=""
 					optionLabelList=""/>			
-			</attributeset>
+				<attribute 
+					name="twitterDefaultDescription" 
+					label="Default card description" 
+					hint="Where there is no Summary or Body text, this is used as the 'description' value for the Twitter Card, which is a required field."
+					type="Text"
+					defaultValue="Read more on our site"
+					required="false"
+					validation="None"
+					regex=""
+					message="" 
+					optionList=""
+					optionLabelList=""/>	
+			</attributeset>		
 		</extension>
 	</extensions>				
 </plugin>

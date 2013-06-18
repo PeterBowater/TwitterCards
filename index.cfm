@@ -1,6 +1,5 @@
 <cfinclude template="plugin/config.cfm">
-<cfset local = StructNew() />
-<cfsavecontent variable="local.newBody">
+<cfsavecontent variable="twitterAdminBody">
 <cfoutput>
 
 <h3>Twitter Cards for Mura</h3>
@@ -11,4 +10,8 @@
 
 </cfoutput>
 </cfsavecontent>
-<cfoutput>#local.newBody#</cfoutput>
+
+<cfoutput>#$.getBean('pluginManager').renderAdminTemplate(
+				body=twitterAdminBody,
+				pageTitle=pluginConfig.getName(),
+				jsLib="jQuery")# </cfoutput>

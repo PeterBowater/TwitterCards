@@ -36,7 +36,7 @@
 					<cfset twitterMeta &='<meta name="twitter:description" content="#stripHTMLAndTruncate($.content().getValue("body"))#" />
 '>
 				<cfelse>
-					<cfset twitterMeta &='<meta name="twitter:description" content="Read more on our site" />
+					<cfset twitterMeta &='<meta name="twitter:description" content="#$.siteConfig().getValue("twitterDefaultDescription")#" />
 '>
 				</cfif>
 				<cfset theGalleryImages = application.contentManager.getActiveContent($.content().getContentID(), $.event('siteid'))>
@@ -75,7 +75,7 @@
 					<cfset twitterMeta &='<meta name="twitter:description" content="#stripHTMLAndTruncate($.content().getValue("body"))#" />
 '>
 				<cfelse>
-					<cfset twitterMeta &='<meta name="twitter:description" content="Read more on our site" />
+					<cfset twitterMeta &='<meta name="twitter:description" content="#$.siteConfig().getValue("twitterDefaultDescription")#" />
 '>
 				</cfif>
 				<cfif incImage>		
