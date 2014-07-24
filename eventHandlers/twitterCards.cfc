@@ -49,6 +49,33 @@
 			
 			</cfcase>
 			
+			<cfcase value="Folder">
+				<cfset cardType="gallery">
+				
+				<cfset twitterMeta = '<meta name="twitter:card" content="#cardType#" />
+<meta name="twitter:site" content="#$.siteConfig().getValue("twitterHandle")#" />
+<meta name="twitter:title" content="#$.content().getValue("title")#" />
+'>
+				<cfif len(stripHTMLandTruncate($.content().getValue("summary")))>
+					<cfset twitterMeta &='<meta name="twitter:description" content="#stripHTMLAndTruncate($.content().getValue("summary"))#" />
+'>
+				<cfelseif len(stripHTMLandTruncate($.content().getValue("body")))>
+					<cfset twitterMeta &='<meta name="twitter:description" content="#stripHTMLAndTruncate($.content().getValue("body"))#" />
+'>
+				<cfelse>
+					<cfset twitterMeta &='<meta name="twitter:description" content="#$.siteConfig().getValue("twitterDefaultDescription")#" />
+'>
+				</cfif>
+				<cfset theGalleryImages = application.contentManager.getActiveContent($.content().getContentID(), $.event('siteid'))>
+				<cfset item = theGalleryImages.getKidsIterator()>
+				<cfloop condition="#item.hasNext()# and item.currentIndex() LTE 3">
+				    <cfset thisImage = item.next()>
+				    <cfset twitterMeta &= '<meta name="twitter:image#item.currentIndex()-1#" content="#protocol##cgi.http_host##thisImage.getImageURL()#" />
+'>
+				</cfloop>
+			
+			</cfcase>
+			
 			<cfdefaultcase>
 				<cfif len($.content().getImageURL())>
 					<cfimage action="info" source="#protocol##cgi.http_host##$.content().getImageURL()#" structname="thisAssocImage">	
